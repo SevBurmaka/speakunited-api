@@ -1,6 +1,6 @@
-package org.betsev.acp.business.contacts.control;
+package org.betsev.acp.business.contact.control;
 
-import org.betsev.acp.business.contacts.entity.Contact;
+import org.betsev.acp.business.contact.entity.Contact;
 
 import java.util.List;
 

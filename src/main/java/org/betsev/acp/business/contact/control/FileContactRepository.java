@@ -1,6 +1,7 @@
-package org.betsev.acp.business.contacts.control;
+package org.betsev.acp.business.contact.control;
 
-import org.betsev.acp.business.contacts.entity.Contact;
+import org.betsev.acp.business.contact.entity.Contact;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 /**
  * Created by sevburmaka on 11/30/16.
  */
+@Component
 public class FileContactRepository implements ContactRepository {
     @Override
     public List<Contact> getAll() {

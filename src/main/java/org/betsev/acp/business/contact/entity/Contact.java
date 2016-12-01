@@ -1,4 +1,4 @@
-package org.betsev.acp.business.contacts.entity;
+package org.betsev.acp.business.contact.entity;
 
 
 import lombok.Getter;

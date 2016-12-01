@@ -1,0 +1,9 @@
+.idea/*
+.gradle/
+.idea/
+armchair-politics.iml
+armchair-politics.ipr
+armchair-politics.iws
+build/
+lib/
+out/

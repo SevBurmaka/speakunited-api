@@ -1,18 +1,17 @@
-package org.betsev.acp.business.contacts.boundary;
+package org.betsev.acp.business.contact.boundary;
 
-import org.betsev.acp.business.contacts.control.ContactRepository;
-import org.betsev.acp.business.contacts.entity.Contact;
+import org.betsev.acp.business.contact.control.ContactRepository;
+import org.betsev.acp.business.contact.entity.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by sevburmaka on 11/30/16.
  */
 @Service
-public class ContactsService {
+public class ContactService {
 
     @Autowired
     ContactRepository contactRepository;

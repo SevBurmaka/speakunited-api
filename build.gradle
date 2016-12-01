@@ -33,6 +33,7 @@ dependencies {
     // end::jetty[]
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    runtime("org.projectlombok:lombok:1.16.10")
     // end::actuator[]
     testCompile("junit:junit")
 }
