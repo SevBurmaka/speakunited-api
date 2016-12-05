@@ -33,7 +33,9 @@ dependencies {
     // end::jetty[]
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
-    runtime("org.projectlombok:lombok:1.16.10")
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile("org.projectlombok:lombok:1.16.10")
+    compile("org.glassfish.jersey.core:jersey-client:2.24.1")
     // end::actuator[]
     testCompile("junit:junit")
 }

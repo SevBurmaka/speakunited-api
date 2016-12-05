@@ -24,17 +24,19 @@ public class Contact {
 
     String bioguideId;
 
-    String emailSite;
+    String photoUrl;
+
+    String emailContactForm;
 
     String emailAddress;
 
-    String districtAddress;
+    Address districtAddress;
 
     String districtPhone;
 
     String districtFax;
 
-    String dcAddress;
+    Address dcAddress;
 
     String dcPhone;
 
@@ -42,6 +44,11 @@ public class Contact {
 
     String district;
 
-    String contactType;
+    String type;
 
+    String facebook;
+
+    String twitter;
+
+    String youtube;
 }

@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface ContactRepository {
     List<Contact> getAll();
+    List<Contact> findByAddressAndType(String address, String type);
 }
