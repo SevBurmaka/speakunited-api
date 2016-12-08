@@ -1,9 +1,15 @@
 package org.betsev.acp.business.contact.boundary;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.betsev.acp.ArmchairPoliticsApp;
 import org.betsev.acp.business.contact.control.ContactRepository;
 import org.betsev.acp.business.contact.entity.Contact;
+import org.betsev.acp.business.contact.entity.GCivicContact;
 import org.betsev.acp.business.contact.entity.TypeMapping;
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +17,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +29,9 @@ public class ContactServiceImpl implements ContactService {
     @Autowired
     ContactRepository contactRepository;
 
+    @Autowired
+    DozerBeanMapper beanMapper;
+
     public List<Contact> getAllContacts(){
         return contactRepository.getAll();
     }
@@ -31,8 +41,6 @@ public class ContactServiceImpl implements ContactService {
         Client client = ClientBuilder.newClient();
 
         WebTarget webTarget = client.target("https://www.googleapis.com/civicinfo/v2/representatives");
-//        WebTarget resourceWebTarget = webTarget.path("resource");
-//        WebTarget helloworldWebTarget = resourceWebTarget.path("helloworld");
 
         webTarget =
                 webTarget.queryParam("levels", "country")
@@ -42,9 +50,22 @@ public class ContactServiceImpl implements ContactService {
 
 
         Response response = webTarget.request().buildGet().invoke();
-        System.out.println(response.getStatus());
-        System.out.println(response.readEntity(String.class));
+        String jsonString = response.readEntity(String.class);
+        JsonObject jsonObject = new JsonParser().parse(jsonString).getAsJsonObject();
 
-        return contactRepository.findByAddressAndType(address,type);
+        //find the relevant field and marshal that
+        JsonElement officials = jsonObject.get("officials");
+        Gson gson = new Gson();
+        GCivicContact[] officialContacts = gson.fromJson(officials, GCivicContact[].class);
+
+        ArrayList<Contact> contacts = new ArrayList<>();
+
+        for (GCivicContact gcontact : officialContacts){
+            Contact contact = beanMapper.map(gcontact,Contact.class);
+            contact.setType(type);
+            contacts.add(contact);
+        }
+
+        return contacts;
     }
 }

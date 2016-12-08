@@ -36,6 +36,8 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     compile("org.projectlombok:lombok:1.16.10")
     compile("org.glassfish.jersey.core:jersey-client:2.24.1")
+    compile("net.sf.dozer:dozer:5.5.1")
+    compile("net.sf.dozer:dozer-spring:5.5.1")
     // end::actuator[]
     testCompile("junit:junit")
 }

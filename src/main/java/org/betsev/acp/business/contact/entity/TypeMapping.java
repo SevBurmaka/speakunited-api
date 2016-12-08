@@ -1,6 +1,5 @@
 package org.betsev.acp.business.contact.entity;
 
-import javax.annotation.PostConstruct;
 import java.util.HashMap;
 
 /**
@@ -9,14 +8,14 @@ import java.util.HashMap;
 public class TypeMapping {
     private static HashMap<String,String> typeMapping = new HashMap<>();
 
-    @PostConstruct
-    public void init(){
+    public static void init(){
         typeMapping.put("house","legislatorLowerBody");
         typeMapping.put("senate","legislatorUpperBody");
-        typeMapping.put("all","legislatorUpperBody,legislatorLowerBody");
     }
 
     public static String get(String type){
+        if (typeMapping.isEmpty())
+            init();
         if (type == null) return typeMapping.get("all");
         if (type.contains(",")){
             String[] types = type.split(",");
