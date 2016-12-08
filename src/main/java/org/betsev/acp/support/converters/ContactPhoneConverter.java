@@ -26,7 +26,7 @@ public class ContactPhoneConverter implements ConfigurableCustomConverter {
                 return phone;
         }
 
-        return phones.get(0);
+        return null;
     }
 
     private boolean isCorrectPhone(String phone){

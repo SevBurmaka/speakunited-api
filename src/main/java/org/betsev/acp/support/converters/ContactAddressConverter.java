@@ -26,7 +26,7 @@ public class ContactAddressConverter implements ConfigurableCustomConverter{
                 return address;
         }
 
-        return addresses.get(0);
+        return null;
     }
 
     private boolean isCorrectAddress(Address address){
