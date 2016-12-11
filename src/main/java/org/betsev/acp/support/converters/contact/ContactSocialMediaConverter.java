@@ -1,4 +1,4 @@
-package org.betsev.acp.support.converters;
+package org.betsev.acp.support.converters.contact;
 
 import org.betsev.acp.support.Constants;
 import org.dozer.ConfigurableCustomConverter;

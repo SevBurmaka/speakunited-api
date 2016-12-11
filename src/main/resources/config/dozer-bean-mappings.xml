@@ -10,40 +10,44 @@
     <mapping>
         <class-a>org.betsev.acp.business.contact.entity.GCivicContact</class-a>
         <class-b>org.betsev.acp.business.contact.entity.Contact</class-b>
-        <field custom-converter="org.betsev.acp.support.converters.ContactPhoneConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.ContactPhoneConverter"
                custom-converter-param="dc">
             <a>phones</a>
             <b>dcPhone</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.ContactPhoneConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.ContactPhoneConverter"
                custom-converter-param="district">
             <a>phones</a>
             <b>districtPhone</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.ContactAddressConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.ContactAddressConverter"
                custom-converter-param="dc">
             <a>address</a>
             <b>dcAddress</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.ContactAddressConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.ContactAddressConverter"
                custom-converter-param="district">
             <a>address</a>
             <b>districtAddress</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.ContactSocialMediaConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.ContactSocialMediaConverter"
                custom-converter-param="Facebook">
             <a>channels</a>
             <b>facebook</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.ContactSocialMediaConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.ContactSocialMediaConverter"
                custom-converter-param="Twitter">
             <a>channels</a>
             <b>twitter</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.ContactSocialMediaConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.ContactSocialMediaConverter"
                custom-converter-param="Youtube">
             <a>channels</a>
             <b>youtube</b>
+        </field>
+        <field custom-converter="org.betsev.acp.support.converters.contact.ContactWebsiteConverter">
+            <a>urls</a>
+            <b>website</b>
         </field>
     </mapping>
     </mappings>
