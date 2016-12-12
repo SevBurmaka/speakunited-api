@@ -2,12 +2,10 @@ package org.betsev.acp.business.contact.control;
 
 import org.betsev.acp.business.contact.entity.Contact;
 
-import java.util.List;
-
 /**
- * Created by sevburmaka on 11/30/16.
+ * Created by sevburmaka on 12/11/16.
  */
-public interface ContactRepository {
-    List<Contact> getAll();
+public interface ContactUnifierService {
     Contact getCorrespondingContact(Contact other);
+
 }

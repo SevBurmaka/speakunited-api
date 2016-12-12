@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:int-stream="http://www.springframework.org/schema/integration/stream"
+       xsi:schemaLocation="http://www.springframework.org/schema/integration
+        http://www.springframework.org/schema/integration/spring-integration-4.3.xsd
+        http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+        ">
+
+    <int:gateway id="contactUnifierGateway" service-interface="org.betsev.acp.business.contact.boundary.ContactUnifierGateway"></int:gateway>
+    <int:channel id="contactsChannel"></int:channel>
+
+    <int:channel id="usclContactChannel">
+        <int:queue capacity="10"></int:queue>
+    </int:channel>
+
+    <int:service-activator input-channel="usclContactChannel" method="getCorrespondingContact" output-channel="processedContacts" ref="usclContactUnifierService"></int:service-activator>
+
+    <int:recipient-list-router id="contactsRouter" input-channel="contactsChannel"
+                               ignore-send-failures="true"
+                               apply-sequence="true">
+        <int:recipient channel="usclContactChannel"/>
+    </int:recipient-list-router>
+
+    <int:aggregator input-channel="processedContacts" method="unify"
+                    ref="contactUnifierAggregator">
+
+    </int:aggregator>
+
+    <int:channel id="processedContacts"></int:channel>
+    <int:poller default="true" fixed-delay="200" id="poller"></int:poller>
+
+</beans>

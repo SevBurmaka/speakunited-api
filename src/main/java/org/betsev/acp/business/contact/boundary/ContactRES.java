@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by sevburmaka on 11/30/16.
@@ -20,11 +21,26 @@ public class ContactRES {
     @Autowired
     ContactService contactService;
 
+    @Autowired
+    ContactUnifierGateway contactUnifierGateway;
+
     @RequestMapping(method = RequestMethod.GET)
     public List<Contact> get(@RequestParam(required = false) String address,@RequestParam(required = false) String type) throws Exception {
+        List<Contact> rawContacts;
+
         if (StringUtils.isEmpty(address))
-            return contactService.getAllContacts();
+            rawContacts = contactService.getAllContacts();
         else
-            return contactService.findByAddressAndType(address,type);
+            rawContacts= contactService.findByAddressAndType(address,type);
+        return unifyContacts(rawContacts);
+    }
+
+    private List<Contact> unifyContacts(List<Contact> contacts){
+
+        List<Contact> unified = contacts.stream().map(
+                contactUnifierGateway::getContactInfo
+        ).collect(Collectors.toList());
+
+        return unified;
     }
 }

@@ -50,4 +50,8 @@
             <b>website</b>
         </field>
     </mapping>
+    <mapping>
+        <class-a>org.betsev.acp.business.contact.entity.USCLContact</class-a>
+        <class-b>org.betsev.acp.business.contact.entity.Contact</class-b>
+    </mapping>
     </mappings>

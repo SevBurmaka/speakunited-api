@@ -33,6 +33,7 @@ dependencies {
     // end::jetty[]
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile group: 'org.springframework.integration', name: 'spring-integration-stream', version: '4.3.1.RELEASE'
     compile 'com.google.code.gson:gson:2.8.0'
     compile("org.projectlombok:lombok:1.16.10")
     compile("org.glassfish.jersey.core:jersey-client:2.24.1")

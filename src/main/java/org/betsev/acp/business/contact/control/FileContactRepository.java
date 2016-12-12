@@ -38,8 +38,9 @@ public class FileContactRepository implements ContactRepository {
     }
 
     @Override
-    public List<Contact> findByAddressAndType(String address, String type) {
+    public Contact getCorrespondingContact(Contact other) {
         return null;
     }
+
 
 }
