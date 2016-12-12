@@ -1,0 +1,28 @@
+[
+  {
+    "priority": 1,
+    "title": "Support The Presidential Accountability Act",
+    "description": "Call your House rep & party leadership to register your support for Katherine Clark's bill",
+    "scripts":[
+      {
+        "type": "phone",
+        "text": "I'm {name}, a constituent calling about H.R. 6340, Rep. Katherine Clark's Presidential Accountability Act. Please ask {repName} to support this resolution. The American people deserve a president who does not have any actual or perceived conflicts of interest in his financial dealings."
+      },
+      {
+        "type": "facebook",
+        "text": "I'm {name}, a constituent contacting you about H.R. 6340, Rep. Katherine Clark's Presidential Accountability Act. Please support this resolution. The American people deserve a president who does not have any actual or perceived conflicts of interest in his financial dealings. #accountabilityact #HR6340"
+      },
+      {
+        "type": "twitter",
+        "text": "Support H.R. 6340! America deserves a president who does not have any conflicts of interest. #accountabilityact #HR6340"
+      },
+      {
+        "type": "mail",
+        "text": "I'm {name}, a constituent contacting you about H.R. 6340, Rep. Katherine Clark's Presidential Accountability Act. Please support this resolution. The American people deserve a president who does not have any actual or perceived conflicts of interest in his financial dealings."
+      }
+    ],
+    "types": ["house","senate"],
+    "specific_contact": "", //if this needs a specific contact (such as "House Oversight Committee") it would be here
+    "notes": "Learn more about the resolution here: https://www.congress.gov/bill/114th-congress/house-bill/6340/all-actions?overview=closed#tabs http://katherineclark.house.gov/index.cfm/2016/11/clark-introduces-bill-to-ensure-president-elect-addresses-conflicts-of-interest. If you have time, you could call Congresswoman Clark's office and thank her: \"I'm calling to thank Congresswoman Clark for introducing H.R. 6340! I appreciate her willingness to keep the president accountable to the American people.\""
+  }
+]
