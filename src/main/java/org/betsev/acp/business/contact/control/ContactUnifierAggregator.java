@@ -1,6 +1,10 @@
 package org.betsev.acp.business.contact.control;
 
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.betsev.acp.business.contact.entity.Contact;
+import org.betsev.acp.support.NullAwareBeanUtilsBean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,8 +14,18 @@ import java.util.List;
  */
 @Component
 public class ContactUnifierAggregator {
+    private static final Logger LOG = LoggerFactory.getLogger(ContactUnifierAggregator.class);
+
     public Contact unify(List<Contact> contacts){
-        //@todo actually unify
-        return contacts.get(0);
+        Contact unified = new Contact();
+        BeanUtilsBean notNull=new NullAwareBeanUtilsBean();
+        contacts.forEach(it->{
+            try {
+                notNull.copyProperties(unified, it);
+            }catch (Exception e){
+                LOG.error("Exception during bean property copying: ",e);
+            }
+        });
+        return unified;
     }
 }

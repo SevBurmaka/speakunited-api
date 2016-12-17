@@ -22,7 +22,7 @@ public class Contact {
 
     String website;
 
-    String bioguideId;
+    IdInfo idInfo;
 
     String photoUrl;
 
