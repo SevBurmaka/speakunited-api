@@ -2,7 +2,7 @@ package org.betsev.acp.business.contact.control;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.betsev.acp.business.contact.entity.Contact;
-import org.betsev.acp.business.contact.entity.USCLContact;
+import org.betsev.acp.business.contact.entity.uscl.USCLContact;
 import org.betsev.acp.support.NullAwareBeanUtilsBean;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
@@ -26,7 +26,9 @@ public class USCLContactUnifierService implements ContactUnifierService {
     @Override
     public Contact getCorrespondingContact(Contact other) {
         USCLContact contact= contactRepository.getCorrespondingContact(other);
-
+        if (contact == null){
+            return null;
+        }
         Contact mapped = beanMapper.map(contact,Contact.class);
         try {
             BeanUtilsBean notNull = new NullAwareBeanUtilsBean();

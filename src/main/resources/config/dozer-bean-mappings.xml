@@ -10,48 +10,48 @@
     <mapping>
         <class-a>org.betsev.acp.business.contact.entity.GCivicContact</class-a>
         <class-b>org.betsev.acp.business.contact.entity.Contact</class-b>
-        <field custom-converter="org.betsev.acp.support.converters.contact.ContactPhoneConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactPhoneConverter"
                custom-converter-param="dc">
             <a>phones</a>
             <b>dcPhone</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.contact.ContactPhoneConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactPhoneConverter"
                custom-converter-param="district">
             <a>phones</a>
             <b>districtPhone</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.contact.ContactAddressConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactAddressConverter"
                custom-converter-param="dc">
             <a>address</a>
             <b>dcAddress</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.contact.ContactAddressConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactAddressConverter"
                custom-converter-param="district">
             <a>address</a>
             <b>districtAddress</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.contact.ContactSocialMediaConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactSocialMediaConverter"
                custom-converter-param="Facebook">
             <a>channels</a>
             <b>facebook</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.contact.ContactSocialMediaConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactSocialMediaConverter"
                custom-converter-param="Twitter">
             <a>channels</a>
             <b>twitter</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.contact.ContactSocialMediaConverter"
+        <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactSocialMediaConverter"
                custom-converter-param="Youtube">
             <a>channels</a>
             <b>youtube</b>
         </field>
-        <field custom-converter="org.betsev.acp.support.converters.contact.ContactWebsiteConverter">
+        <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactWebsiteConverter">
             <a>urls</a>
             <b>website</b>
         </field>
     </mapping>
     <mapping>
-        <class-a>org.betsev.acp.business.contact.entity.USCLContact</class-a>
+        <class-a>org.betsev.acp.business.contact.entity.uscl.USCLContact</class-a>
         <class-b>org.betsev.acp.business.contact.entity.Contact</class-b>
         <field >
             <a>id</a>
@@ -69,6 +69,29 @@
             <a>name.full</a>
             <b>name</b>
         </field>
-
+        <field >
+            <a>lastTerm.url</a>
+            <b>website</b>
+        </field>
+        <field >
+            <a>lastTerm.state</a>
+            <b>state</b>
+        </field>
+        <field >
+            <a>lastTerm.district</a>
+            <b>district</b>
+        </field>
+        <field >
+            <a>lastTerm.contactForm</a>
+            <b>emailContactForm</b>
+        </field>
+        <field >
+            <a>lastTerm.phone</a>
+            <b>dcPhone</b>
+        </field>
+        <field >
+            <a>lastTerm.fax</a>
+            <b>dcFax</b>
+        </field>
     </mapping>
     </mappings>

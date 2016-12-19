@@ -1,4 +1,4 @@
-package org.betsev.acp.support.converters.contact;
+package org.betsev.acp.support.converters.contact.gcivic;
 
 
 import org.betsev.acp.support.Constants;

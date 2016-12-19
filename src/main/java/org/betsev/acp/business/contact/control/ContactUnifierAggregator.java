@@ -20,10 +20,12 @@ public class ContactUnifierAggregator {
         Contact unified = new Contact();
         BeanUtilsBean notNull=new NullAwareBeanUtilsBean();
         contacts.forEach(it->{
-            try {
-                notNull.copyProperties(unified, it);
-            }catch (Exception e){
-                LOG.error("Exception during bean property copying: ",e);
+            if (it != null) {
+                try {
+                    notNull.copyProperties(unified, it);
+                } catch (Exception e) {
+                    LOG.error("Exception during bean property copying: ", e);
+                }
             }
         });
         return unified;

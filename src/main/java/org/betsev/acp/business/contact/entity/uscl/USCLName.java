@@ -1,4 +1,4 @@
-package org.betsev.acp.business.contact.entity;
+package org.betsev.acp.business.contact.entity.uscl;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

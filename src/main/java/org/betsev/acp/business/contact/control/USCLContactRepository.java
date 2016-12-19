@@ -3,9 +3,11 @@ package org.betsev.acp.business.contact.control;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.betsev.acp.business.contact.entity.Contact;
-import org.betsev.acp.business.contact.entity.USCLContact;
+import org.betsev.acp.business.contact.entity.uscl.USCLContact;
+import org.betsev.acp.support.NameMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by sevburmaka on 12/11/16.
@@ -24,6 +27,9 @@ public class USCLContactRepository  {
     private static final Logger LOG = LoggerFactory.getLogger(USCLContactRepository.class);
 
     private List<USCLContact> contacts;
+
+    @Autowired
+    NameMatcher nameMatcher;
 
     @PostConstruct
     private void init(){
@@ -45,9 +51,16 @@ public class USCLContactRepository  {
     }
 
     public USCLContact getCorrespondingContact(Contact other) {
-        USCLContact contact = contacts.get(0);
-        //for now just matching on first and last name
+        List<String> names = contacts.stream().map(
+                it-> it.getName().getFull()
+        ).collect(Collectors.toList());
 
-        return contact;
+        int bestMatch = nameMatcher.getBestMatchIndex(other.getName(),names,0.9);
+        //for now just matching on full name
+        if (bestMatch < 0){
+            LOG.error("Could not find corresponding contact in USCL repo for {}",other.getName());
+            return null;
+        }
+        return contacts.get(bestMatch);
     }
 }

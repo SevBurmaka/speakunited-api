@@ -43,7 +43,7 @@ dependencies {
     testCompile("junit:junit")
     compile("org.springframework.boot:spring-boot-configuration-processor")
     compile("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.3")
-
+    compile("info.debatty:java-string-similarity:0.13")
 }
 
 compileJava.dependsOn(processResources)
