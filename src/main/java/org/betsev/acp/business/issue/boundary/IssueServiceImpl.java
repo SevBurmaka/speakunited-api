@@ -32,7 +32,7 @@ public class IssueServiceImpl implements IssueService{
 
         Gson gson = new Gson();
         try {
-            if (issuesLocation == null ){
+            if (issuesLocation == null || !new File(issuesLocation).exists() ){
                 InputStream issuesStream = new ClassPathResource("issues/issues.json").getInputStream();
                 BufferedReader issueReader = new BufferedReader(new InputStreamReader(issuesStream));
                 issues = gson.fromJson(issueReader, Issue[].class);
