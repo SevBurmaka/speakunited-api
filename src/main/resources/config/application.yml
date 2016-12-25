@@ -3,4 +3,4 @@ server.port: 8080
 # Actuator
 management.port: 8081
 
-issues-location: "/Users/sevburmaka/dev/armchair-politics/build/resources/main/issues/issues.json"
+issues-location: "/tmp/issues.json"
