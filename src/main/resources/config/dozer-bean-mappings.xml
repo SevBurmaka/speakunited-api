@@ -33,17 +33,17 @@
         <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactSocialMediaConverter"
                custom-converter-param="Facebook">
             <a>channels</a>
-            <b>facebook</b>
+            <b>socialMedia.facebook</b>
         </field>
         <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactSocialMediaConverter"
                custom-converter-param="Twitter">
             <a>channels</a>
-            <b>twitter</b>
+            <b>socialMedia.twitter</b>
         </field>
         <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactSocialMediaConverter"
                custom-converter-param="Youtube">
             <a>channels</a>
-            <b>youtube</b>
+            <b>socialMedia.youtube</b>
         </field>
         <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactWebsiteConverter">
             <a>urls</a>

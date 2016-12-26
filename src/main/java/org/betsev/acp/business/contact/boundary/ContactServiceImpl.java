@@ -5,7 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.betsev.acp.ArmchairPoliticsApp;
-import org.betsev.acp.business.contact.control.ContactRepository;
+import org.betsev.acp.business.contact.control.USCLContactRepository;
 import org.betsev.acp.business.contact.entity.Contact;
 import org.betsev.acp.business.contact.entity.GCivicContact;
 import org.betsev.acp.business.contact.entity.TypeMapping;
@@ -19,6 +19,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by sevburmaka on 11/30/16.
@@ -27,13 +28,15 @@ import java.util.List;
 public class ContactServiceImpl implements ContactService {
 
     @Autowired
-    ContactRepository contactRepository;
+    USCLContactRepository contactRepository;
 
     @Autowired
     DozerBeanMapper beanMapper;
 
     public List<Contact> getAllContacts(){
-        return contactRepository.getAll();
+        return contactRepository.getAll().stream().map(it ->
+                beanMapper.map(it,Contact.class)
+        ).collect(Collectors.toList());
     }
 
     @Override

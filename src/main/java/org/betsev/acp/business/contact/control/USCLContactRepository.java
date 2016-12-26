@@ -5,6 +5,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.betsev.acp.business.contact.entity.Contact;
 import org.betsev.acp.business.contact.entity.uscl.USCLContact;
 import org.betsev.acp.support.NameMatcher;
+import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class USCLContactRepository  {
     @Autowired
     NameMatcher nameMatcher;
 
+    @Autowired
+    DozerBeanMapper beanMapper;
+
     @PostConstruct
     private void init(){
         try {
@@ -39,6 +43,23 @@ public class USCLContactRepository  {
             InputStream contactStream = new ClassPathResource("uscl/legislators-current.yaml").getInputStream();
             USCLContact[] contactsArray = new USCLContact[0];
             contacts = CollectionUtils.arrayToList(mapper.readValue(contactStream,contactsArray.getClass()));
+
+            //need to get the social media handles separately and then unify them
+            List<USCLContact> socialMediaContacts = new ArrayList<>();
+            InputStream socialMediaContactStream = new ClassPathResource("uscl/legislators-social-media.yaml").getInputStream();
+            USCLContact[] socialMediaContactsArray = new USCLContact[0];
+            socialMediaContacts = CollectionUtils.arrayToList(mapper.readValue(socialMediaContactStream,socialMediaContactsArray.getClass()));
+
+            socialMediaContacts.stream().forEach(social -> {
+                int index = contacts.indexOf(social);
+                if (index == -1)
+                    LOG.error("Did not find matching USCL contact from social media contact: {}",social);
+                else{
+                   contacts.get(index).setSocialMedia(social.getSocialMedia());
+                }
+
+            });
+
             if (contacts.isEmpty())
                 LOG.error("Did not read any legislators from USCL data");
         }catch(IOException e){

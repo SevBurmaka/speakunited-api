@@ -46,9 +46,5 @@ public class Contact {
 
     String type;
 
-    String facebook;
-
-    String twitter;
-
-    String youtube;
+    SocialMedia socialMedia;
 }
