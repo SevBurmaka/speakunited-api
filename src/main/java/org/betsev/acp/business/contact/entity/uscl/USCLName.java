@@ -16,4 +16,13 @@ public class USCLName {
         String last;
         @JsonProperty("official_full")
         String full;
+
+        @Override
+        public String toString() {
+                return "USCLName{" +
+                        "first='" + first + '\'' +
+                        ", last='" + last + '\'' +
+                        ", full='" + full + '\'' +
+                        '}';
+        }
 }

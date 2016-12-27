@@ -31,4 +31,25 @@ public class IdInfo {
     String wikidata;
     @JsonProperty("google_entity_id")
     String googleEntityId;
+
+    @Override
+    public String toString() {
+        return "IdInfo{" +
+                "bioguide='" + bioguide + '\'' +
+                ", lis='" + lis + '\'' +
+                ", thomas='" + thomas + '\'' +
+                ", govtrack='" + govtrack + '\'' +
+                ", opensecrets='" + opensecrets + '\'' +
+                ", votesmart='" + votesmart + '\'' +
+                ", fec=" + fec +
+                ", cspan='" + cspan + '\'' +
+                ", wikipedia='" + wikipedia + '\'' +
+                ", houseHistory='" + houseHistory + '\'' +
+                ", ballotpedia='" + ballotpedia + '\'' +
+                ", maplight='" + maplight + '\'' +
+                ", icpsr='" + icpsr + '\'' +
+                ", wikidata='" + wikidata + '\'' +
+                ", googleEntityId='" + googleEntityId + '\'' +
+                '}';
+    }
 }

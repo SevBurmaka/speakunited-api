@@ -47,4 +47,14 @@ public class Contact {
     String type;
 
     SocialMedia socialMedia;
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "idInfo=" + idInfo +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

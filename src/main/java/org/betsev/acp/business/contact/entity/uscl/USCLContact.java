@@ -55,5 +55,13 @@ public class USCLContact implements Comparable {
 
         return (id.getBioguide().compareTo(((USCLContact) o).getId().getBioguide()));
     }
+
+    @Override
+    public String toString() {
+        return "USCLContact{" +
+                "id=" + id +
+                ", name=" + name +
+                '}';
+    }
 }
 
