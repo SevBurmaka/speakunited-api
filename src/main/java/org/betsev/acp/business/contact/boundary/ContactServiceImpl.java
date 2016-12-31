@@ -49,7 +49,7 @@ public class ContactServiceImpl implements ContactService {
                 webTarget.queryParam("levels", "country")
                         .queryParam("address", address)
                         .queryParam("roles", TypeMapping.get(type))
-                        .queryParam("key", ArmchairPoliticsApp.API_KEY);
+                        .queryParam("key", ArmchairPoliticsApp.GOOGLE_API_KEY);
 
 
         Response response = webTarget.request().buildGet().invoke();

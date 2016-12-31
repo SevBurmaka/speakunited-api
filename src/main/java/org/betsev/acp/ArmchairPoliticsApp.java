@@ -15,7 +15,7 @@ import org.springframework.core.env.Environment;
 @SpringBootApplication
 @ComponentScan
 public class ArmchairPoliticsApp  {
-    public static final String API_KEY="AIzaSyBzrTWiTffGH9n6oIsDp_Lpd8mfTWDnbiI";
+    public static final String GOOGLE_API_KEY ="AIzaSyBzrTWiTffGH9n6oIsDp_Lpd8mfTWDnbiI";
     private static final Logger LOG = LoggerFactory.getLogger(ArmchairPoliticsApp.class);
 
     @Autowired
