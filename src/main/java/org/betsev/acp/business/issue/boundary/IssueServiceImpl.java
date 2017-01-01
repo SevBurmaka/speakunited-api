@@ -54,7 +54,7 @@ public class IssueServiceImpl implements IssueService{
     public List<Issue> replaceIssueText(List<Issue> issues,String fieldName, String value) {
         issues.forEach(issue ->{
             issue.getScripts().forEach(script ->{
-                script.setText(script.getText().replace("{"+fieldName+"}",value));
+                script.setText(script.getText().replace("["+fieldName+"]",value));
             });
         });
         return issues;
