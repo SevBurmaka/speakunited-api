@@ -14,6 +14,7 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/forms")
 public class FormsRES {
+    //for now we are forwarding to the external api. once we can get a local instance up and running we will use that instead
     public static final String EXTERNAL_FORM_API = "https://congressforms.eff.org";
     public static final String RETRIEVE_FORM_ELEMENTS = "/retrieve-form-elements";
     public static final String FILL_OUT_FORM = "/fill-out-form";
