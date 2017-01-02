@@ -1,7 +1,8 @@
-package org.betsev.acp.business.contact.entity;
+package org.betsev.acp.business.contact.entity.GCivic;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.betsev.acp.business.contact.entity.Address;
 
 import java.util.List;
 import java.util.Map;

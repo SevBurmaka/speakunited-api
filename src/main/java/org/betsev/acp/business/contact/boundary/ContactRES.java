@@ -1,6 +1,7 @@
 package org.betsev.acp.business.contact.boundary;
 
 import org.betsev.acp.business.contact.entity.Contact;
+import org.betsev.acp.business.contact.entity.ContactType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +31,10 @@ public class ContactRES {
 
         if (StringUtils.isEmpty(address))
             rawContacts = contactService.getAllContacts();
-        else
-            rawContacts= contactService.findByAddressAndType(address,type);
+        else {
+            ContactType contactType = ContactType.getByValue(type);
+            rawContacts = contactService.findByAddressAndType(address, contactType);
+        }
         return unifyContacts(rawContacts);
     }
 

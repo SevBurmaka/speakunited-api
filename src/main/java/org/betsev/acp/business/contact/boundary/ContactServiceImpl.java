@@ -7,8 +7,9 @@ import com.google.gson.JsonParser;
 import org.betsev.acp.ArmchairPoliticsApp;
 import org.betsev.acp.business.contact.control.USCLContactRepository;
 import org.betsev.acp.business.contact.entity.Contact;
-import org.betsev.acp.business.contact.entity.GCivicContact;
-import org.betsev.acp.business.contact.entity.TypeMapping;
+import org.betsev.acp.business.contact.entity.ContactType;
+import org.betsev.acp.business.contact.entity.GCivic.GCivicContact;
+import org.betsev.acp.business.contact.entity.GCivic.TypeMapping;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +41,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> findByAddressAndType(String address, String type) {
+    public List<Contact> findByAddressAndType(String address, ContactType type) {
         Client client = ClientBuilder.newClient();
 
         WebTarget webTarget = client.target("https://www.googleapis.com/civicinfo/v2/representatives");
@@ -50,7 +51,6 @@ public class ContactServiceImpl implements ContactService {
                         .queryParam("address", address)
                         .queryParam("roles", TypeMapping.get(type))
                         .queryParam("key", ArmchairPoliticsApp.GOOGLE_API_KEY);
-
 
         Response response = webTarget.request().buildGet().invoke();
         String jsonString = response.readEntity(String.class);
@@ -65,7 +65,7 @@ public class ContactServiceImpl implements ContactService {
 
         for (GCivicContact gcontact : officialContacts){
             Contact contact = beanMapper.map(gcontact,Contact.class);
-            contact.setType(type);
+            contact.setType(type.getDisplayValue());
             contacts.add(contact);
         }
 
