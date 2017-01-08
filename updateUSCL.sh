@@ -1,0 +1,3 @@
+wget https://raw.githubusercontent.com/unitedstates/congress-legislators/master/committee-membership-current.yaml -O src/main/resources/uscl/committee-membership-current.yaml
+wget https://raw.githubusercontent.com/unitedstates/congress-legislators/master/legislators-current.yaml -O src/main/resources/uscl/legislators-current.yaml
+wget https://raw.githubusercontent.com/unitedstates/congress-legislators/master/legislators-social-media.yaml -O src/main/resources/uscl/legislators-social-media.yaml

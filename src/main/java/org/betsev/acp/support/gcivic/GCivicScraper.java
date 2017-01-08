@@ -15,8 +15,6 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.File;
 import java.io.InputStream;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -36,25 +34,20 @@ public class GCivicScraper {
 
             Set<String> divisions = new HashSet<>();
 
-            while (scanner.hasNext()) {
-                String ocd = scanner.next();
-                Pattern p = Pattern.compile("(ocd-division/country:us/state:[a-z][a-z].*),");
-                Matcher m = p.matcher(ocd);
-                if (m.find()) {
-                    divisions.add(m.group(1));
-                }
-            }
-
+//            while (scanner.hasNext()) {
+//                divisions.add(scanner.next());
+//            }
+            divisions.add("ocd-division/country:us/state:de");
             List<Contact> allContacts = new ArrayList<>();
 
-//            doQueries(divisions, contactService, allContacts,ContactType.SENATE);
+            doQueries(divisions, contactService, allContacts,ContactType.SENATE);
             doQueries(divisions, contactService, allContacts,ContactType.HOUSE);
 
             //need to manually query OH and PA because they break when querying by district
-            allContacts.addAll(contactService.findByAddressAndType("1 Capitol Square, Columbus, OH 43215",ContactType.SENATE));
-            allContacts.addAll(contactService.findByAddressAndType("Commonwealth Avenue Harrisburg, Pennsylvania",ContactType.SENATE));
+//            allContacts.addAll(contactService.findByAddressAndType("1 Capitol Square, Columbus, OH 43215",ContactType.SENATE));
+//            allContacts.addAll(contactService.findByAddressAndType("Commonwealth Avenue Harrisburg, Pennsylvania",ContactType.SENATE));
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-            File out = new File("gcivic-contacts.yaml");
+            File out = new File("gcivic-contacts2.yaml");
             mapper.writeValue(out, allContacts.toArray());
 
         } catch (Exception e) {
@@ -75,8 +68,8 @@ public class GCivicScraper {
 
 
     static boolean doQuery(String division, ContactService contactService, List<Contact> allContacts, ContactType contactType) {
-        System.out.println("Querying division : " + division);
-        if (!(division.startsWith("ocd-division/country:us/state:pa") || division.startsWith("ocd-division/country:us/state:oh")))
+        System.out.println("Querying "+contactType+ " for division : " + division);
+        if ((division.startsWith("ocd-division/country:us/state:pa") || division.startsWith("ocd-division/country:us/state:oh")))
             return false;
         try {
             Thread.sleep(10000);
@@ -84,9 +77,9 @@ public class GCivicScraper {
             allContacts.addAll(contacts);
             return false;
         } catch (Exception e) {
-            System.out.println("Exception while querying division: " + division);
+            System.out.println("Exception while querying "+contactType+ " for division: " + division);
             e.printStackTrace();
-            return true;
+            return false;
         }
     }
 }

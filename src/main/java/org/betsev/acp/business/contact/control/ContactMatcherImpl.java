@@ -1,6 +1,7 @@
 package org.betsev.acp.business.contact.control;
 
 import org.betsev.acp.business.contact.entity.BaseContact;
+import org.betsev.acp.business.contact.entity.Contact;
 import org.betsev.acp.support.NameMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,10 @@ public class ContactMatcherImpl implements ContactMatcher{
 
     @Override
     public BaseContact findMatchingContact(List<BaseContact> contacts, BaseContact toFind) {
-        Optional<BaseContact> byId = contacts.stream().filter(it->it.getBioguide().equals(toFind.getBioguide())).findFirst();
+        Optional<BaseContact> byId = contacts.stream().filter(it-> {
+            if (it.getBioguide() == null || toFind.getBioguide() == null) return false;
+            return it.getBioguide().equals(toFind.getBioguide());
+        }).findFirst();
         if (byId.isPresent())
             return byId.get();
 
@@ -35,7 +39,7 @@ public class ContactMatcherImpl implements ContactMatcher{
         //for now just matching on full name
         if (bestMatch < 0){
             LOG.error("Could not find corresponding contact for {}",toFind.getFullName());
-            return null;
+            return new Contact();
         }
         return contacts.get(bestMatch);
     }
