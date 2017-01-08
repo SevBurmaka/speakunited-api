@@ -2,7 +2,7 @@ package org.betsev.acp.support.gcivic;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import org.betsev.acp.ArmchairPoliticsApp;
+import org.betsev.acp.SpeakUnitedApp;
 import org.betsev.acp.business.contact.boundary.ContactService;
 import org.betsev.acp.business.contact.entity.Contact;
 import org.betsev.acp.business.contact.entity.ContactType;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class GCivicScraper {
 
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(ArmchairPoliticsApp.class, args);
+        ApplicationContext ctx = SpringApplication.run(SpeakUnitedApp.class, args);
         ContactService contactService = (ContactService) ctx.getBean("contactServiceImpl");
 
         try {

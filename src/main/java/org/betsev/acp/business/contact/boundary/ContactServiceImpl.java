@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.betsev.acp.ArmchairPoliticsApp;
+import org.betsev.acp.SpeakUnitedApp;
 import org.betsev.acp.business.contact.control.uscl.USCLContactRepository;
 import org.betsev.acp.business.contact.entity.Contact;
 import org.betsev.acp.business.contact.entity.ContactType;
@@ -57,7 +57,7 @@ public class ContactServiceImpl implements ContactService {
                 webTarget.queryParam("levels", "country")
                         .queryParam("address", address)
                         .queryParam("roles", TypeMapping.get(type))
-                        .queryParam("key", ArmchairPoliticsApp.GOOGLE_API_KEY);
+                        .queryParam("key", SpeakUnitedApp.GOOGLE_API_KEY);
 
         return queryApi(webTarget,type);
     }
@@ -93,7 +93,7 @@ public class ContactServiceImpl implements ContactService {
                     webTarget.queryParam("levels", "country")
                             .queryParam("roles", TypeMapping.get(type))
                             .queryParam("recursive", true)
-                            .queryParam("key", ArmchairPoliticsApp.GOOGLE_API_KEY);
+                            .queryParam("key", SpeakUnitedApp.GOOGLE_API_KEY);
 
             return queryApi(webTarget, type);
         }catch(UnsupportedEncodingException e){

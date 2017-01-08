@@ -14,15 +14,15 @@ import org.springframework.core.env.Environment;
  */
 @SpringBootApplication
 @ComponentScan
-public class ArmchairPoliticsApp  {
+public class SpeakUnitedApp {
     public static final String GOOGLE_API_KEY ="AIzaSyBzrTWiTffGH9n6oIsDp_Lpd8mfTWDnbiI";
-    private static final Logger LOG = LoggerFactory.getLogger(ArmchairPoliticsApp.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SpeakUnitedApp.class);
 
     @Autowired
     Environment env;
 
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(ArmchairPoliticsApp.class, args);
+        ApplicationContext ctx = SpringApplication.run(SpeakUnitedApp.class, args);
 
     }
 
