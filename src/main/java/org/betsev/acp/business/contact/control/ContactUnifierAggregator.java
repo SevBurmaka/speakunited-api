@@ -23,6 +23,7 @@ public class ContactUnifierAggregator {
             if (it != null) {
                 try {
                     notNull.copyProperties(unified, it);
+                    //need to also copy properties that are objects that might not be null
                 } catch (Exception e) {
                     LOG.error("Exception during bean property copying: ", e);
                 }

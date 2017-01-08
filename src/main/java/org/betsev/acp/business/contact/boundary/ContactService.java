@@ -11,4 +11,5 @@ import java.util.List;
 public interface ContactService {
     List<Contact> getAllContacts();
     List<Contact> findByAddressAndType(String address, ContactType type);
+    List<Contact> findByDistrictAndType(String district, ContactType type);
 }

@@ -1,4 +1,4 @@
-package org.betsev.acp.business.contact.entity.GCivic;
+package org.betsev.acp.business.contact.entity.gcivic;
 
 import org.betsev.acp.business.contact.entity.ContactType;
 

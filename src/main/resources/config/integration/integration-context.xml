@@ -15,13 +15,19 @@
     <int:channel id="usclContactChannel">
         <int:queue capacity="10"></int:queue>
     </int:channel>
+    <int:channel id="gcivicContactChannel">
+        <int:queue capacity="10"></int:queue>
+    </int:channel>
 
     <int:service-activator input-channel="usclContactChannel" method="getCorrespondingContact" output-channel="processedContacts" ref="usclContactUnifierService"></int:service-activator>
+    <int:service-activator input-channel="gcivicContactChannel" method="getCorrespondingContact" output-channel="processedContacts" ref="gcivicContactUnifierService"></int:service-activator>
+
 
     <int:recipient-list-router id="contactsRouter" input-channel="contactsChannel"
                                ignore-send-failures="true"
                                apply-sequence="true">
         <int:recipient channel="usclContactChannel"/>
+        <int:recipient channel="gcivicContactChannel"/>
     </int:recipient-list-router>
 
     <int:aggregator input-channel="processedContacts" method="unify"

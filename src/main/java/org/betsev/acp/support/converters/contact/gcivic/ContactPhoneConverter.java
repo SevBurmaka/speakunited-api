@@ -21,9 +21,11 @@ public class ContactPhoneConverter implements ConfigurableCustomConverter {
     public Object convert(Object existingDestinationFieldValue, Object sourceFieldValue, Class<?> destinationClass, Class<?> sourceClass) {
         List<String> phones = (List<String>) sourceFieldValue;
 
-        for (String phone : phones){
-            if (isCorrectPhone(phone))
-                return phone;
+        if (phones != null) {
+            for (String phone : phones) {
+                if (isCorrectPhone(phone))
+                    return phone;
+            }
         }
 
         return null;

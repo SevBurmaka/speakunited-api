@@ -1,9 +1,11 @@
 package org.betsev.acp.business.contact.entity.uscl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.betsev.acp.business.contact.entity.BaseContact;
 import org.betsev.acp.business.contact.entity.IdInfo;
 import org.betsev.acp.business.contact.entity.SocialMedia;
 import org.springframework.util.CollectionUtils;
@@ -16,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class USCLContact implements Comparable {
+public class USCLContact implements Comparable,BaseContact {
 
     IdInfo id;
     USCLName name;
@@ -62,6 +64,28 @@ public class USCLContact implements Comparable {
                 "id=" + id +
                 ", name=" + name +
                 '}';
+    }
+
+    @Override
+    @JsonIgnore
+    public String getBioguide() {
+        if (id != null )
+            return id.getBioguide();
+        return null;
+    }
+
+    @Override
+    @JsonIgnore
+    public String getFullName() {
+        if (name != null) {
+            if (name.getFull() != null){
+                return name.getFull();
+            }
+            else{
+                return name.getFirst() + " " + name.getLast();
+            }
+        }
+        return null;
     }
 }
 

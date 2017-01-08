@@ -1,9 +1,8 @@
-package org.betsev.acp.business.contact.control;
+package org.betsev.acp.business.contact.control.uscl;
 
-import org.apache.commons.beanutils.BeanUtilsBean;
+import org.betsev.acp.business.contact.control.ContactUnifierService;
 import org.betsev.acp.business.contact.entity.Contact;
 import org.betsev.acp.business.contact.entity.uscl.USCLContact;
-import org.betsev.acp.support.NullAwareBeanUtilsBean;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,14 +28,7 @@ public class USCLContactUnifierService implements ContactUnifierService {
         if (contact == null){
             return null;
         }
-        Contact mapped = beanMapper.map(contact,Contact.class);
-        try {
-            BeanUtilsBean notNull = new NullAwareBeanUtilsBean();
-            notNull.copyProperties(mapped, other);
-        }catch (Exception e){
-            LOG.error("Exception during bean property copying: ",e);
-        }
 
-        return mapped;
+        return beanMapper.map(contact,Contact.class);
     }
 }

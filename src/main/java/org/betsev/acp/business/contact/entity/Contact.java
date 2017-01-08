@@ -1,6 +1,7 @@
 package org.betsev.acp.business.contact.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Contact {
+public class Contact implements BaseContact {
     String name;
 
     String firstName;
@@ -57,4 +58,24 @@ public class Contact {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    @Override
+    @JsonIgnore
+    public String getBioguide() {
+        if (idInfo != null )
+            return idInfo.getBioguide();
+        return null;
+    }
+
+    @Override
+    @JsonIgnore
+    public String getFullName() {
+            if (name != null){
+                return name;
+            }
+            else{
+                return firstName + " " + lastName;
+            }
+        }
+
 }

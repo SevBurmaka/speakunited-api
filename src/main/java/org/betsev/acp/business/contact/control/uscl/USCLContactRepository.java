@@ -1,10 +1,11 @@
-package org.betsev.acp.business.contact.control;
+package org.betsev.acp.business.contact.control.uscl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import org.betsev.acp.business.contact.control.ContactMatcher;
+import org.betsev.acp.business.contact.entity.BaseContact;
 import org.betsev.acp.business.contact.entity.Contact;
 import org.betsev.acp.business.contact.entity.uscl.USCLContact;
-import org.betsev.acp.support.NameMatcher;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,7 @@ public class USCLContactRepository  {
     private List<USCLContact> contacts;
 
     @Autowired
-    NameMatcher nameMatcher;
+    ContactMatcher contactMatcher;
 
     @Autowired
     DozerBeanMapper beanMapper;
@@ -72,16 +73,8 @@ public class USCLContactRepository  {
     }
 
     public USCLContact getCorrespondingContact(Contact other) {
-        List<String> names = contacts.stream().map(
-                it-> it.getName().getFull()
-        ).collect(Collectors.toList());
-
-        int bestMatch = nameMatcher.getBestMatchIndex(other.getName(),names,0.9);
-        //for now just matching on full name
-        if (bestMatch < 0){
-            LOG.error("Could not find corresponding contact in USCL repo for {}",other.getName());
-            return null;
-        }
-        return contacts.get(bestMatch);
+        return (USCLContact) contactMatcher.findMatchingContact(
+                contacts.stream().map(it-> (BaseContact) it).collect(Collectors.toList()),
+                other);
     }
 }

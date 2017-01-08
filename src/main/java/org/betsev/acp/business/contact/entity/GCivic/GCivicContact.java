@@ -1,4 +1,4 @@
-package org.betsev.acp.business.contact.entity.GCivic;
+package org.betsev.acp.business.contact.entity.gcivic;
 
 import lombok.Getter;
 import lombok.Setter;

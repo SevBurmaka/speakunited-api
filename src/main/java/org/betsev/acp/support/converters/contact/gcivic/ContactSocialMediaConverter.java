@@ -23,11 +23,12 @@ public class ContactSocialMediaConverter implements ConfigurableCustomConverter{
     public Object convert(Object existingDestinationFieldValue, Object sourceFieldValue, Class<?> destinationClass, Class<?> sourceClass) {
         List<Map<String,String>> channels = (List<Map<String,String>>) sourceFieldValue;
 
-        for (Map<String,String> channel : channels){
-            if (isCorrectChannel(channel))
-                return channel.get(VALUE_FIELD);
+        if (channels != null) {
+            for (Map<String, String> channel : channels) {
+                if (isCorrectChannel(channel))
+                    return channel.get(VALUE_FIELD);
+            }
         }
-
         return null;
     }
 

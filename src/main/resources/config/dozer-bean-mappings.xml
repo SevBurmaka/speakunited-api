@@ -8,7 +8,7 @@
         <wildcard>true</wildcard>
     </configuration>
     <mapping>
-        <class-a>org.betsev.acp.business.contact.entity.GCivic.GCivicContact</class-a>
+        <class-a>org.betsev.acp.business.contact.entity.gcivic.GCivicContact</class-a>
         <class-b>org.betsev.acp.business.contact.entity.Contact</class-b>
         <field custom-converter="org.betsev.acp.support.converters.contact.gcivic.ContactPhoneConverter"
                custom-converter-param="dc">

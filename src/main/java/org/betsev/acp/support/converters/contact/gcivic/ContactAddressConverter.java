@@ -21,9 +21,11 @@ public class ContactAddressConverter implements ConfigurableCustomConverter{
     public Object convert(Object existingDestinationFieldValue, Object sourceFieldValue, Class<?> destinationClass, Class<?> sourceClass) {
         List<Address> addresses = (List<Address>) sourceFieldValue;
 
-        for (Address address : addresses){
-            if (isCorrectAddress(address))
-                return address;
+        if (addresses != null) {
+            for (Address address : addresses) {
+                if (isCorrectAddress(address))
+                    return address;
+            }
         }
 
         return null;
