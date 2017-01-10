@@ -1,6 +1,7 @@
 package org.betsev.acp.config;
 
 import org.dozer.DozerBeanMapper;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
@@ -13,6 +14,7 @@ import java.util.List;
  * Created by sevburmaka on 12/7/16.
  */
 @Configuration
+@EnableAutoConfiguration
 public class AppConfig implements SchedulingConfigurer {
     @Bean
     public DozerBeanMapper dozerBeanMapper() {
