@@ -16,6 +16,7 @@ import java.util.List;
 @Configuration
 @EnableAutoConfiguration
 public class AppConfig implements SchedulingConfigurer {
+
     @Bean
     public DozerBeanMapper dozerBeanMapper() {
         List<String> mappingFiles = Arrays.asList(

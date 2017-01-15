@@ -4,16 +4,18 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.betsev.acp.SpeakUnitedApp;
-import org.betsev.acp.business.contact.control.uscl.USCLContactRepository;
+import org.betsev.acp.business.contact.control.ContactRepository;
 import org.betsev.acp.business.contact.entity.Contact;
 import org.betsev.acp.business.contact.entity.ContactType;
+import org.betsev.acp.business.contact.entity.IdInfo;
 import org.betsev.acp.business.contact.entity.gcivic.GCivicContact;
 import org.betsev.acp.business.contact.entity.gcivic.TypeMapping;
+import org.betsev.acp.config.ApiKeyConfig;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.client.Client;
@@ -24,27 +26,29 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by sevburmaka on 11/30/16.
  */
 @Service
-public class ContactServiceImpl implements ContactService {
-    private static final Logger LOG = LoggerFactory.getLogger(ContactServiceImpl.class);
+@Qualifier("unified")
+public class UnifiedContactService implements ContactService {
+    private static final Logger LOG = LoggerFactory.getLogger(UnifiedContactService.class);
 
     @Autowired
-    USCLContactRepository contactRepository;
+    @Qualifier("unified")
+    ContactRepository contactRepository;
 
     @Autowired
     DozerBeanMapper beanMapper;
 
+    @Autowired
+    ApiKeyConfig apiKeyConfig;
+
     private static String GCIVIC_URL = "https://www.googleapis.com/civicinfo/v2/representatives";
 
     public List<Contact> getAllContacts(){
-        return contactRepository.getAll().stream().map(it ->
-                beanMapper.map(it,Contact.class)
-        ).collect(Collectors.toList());
+        return contactRepository.getAll();
     }
 
     @Override
@@ -57,7 +61,7 @@ public class ContactServiceImpl implements ContactService {
                 webTarget.queryParam("levels", "country")
                         .queryParam("address", address)
                         .queryParam("roles", TypeMapping.get(type))
-                        .queryParam("key", SpeakUnitedApp.GOOGLE_API_KEY);
+                        .queryParam("key", apiKeyConfig.getGoogleApiKey());
 
         return queryApi(webTarget,type);
     }
@@ -77,7 +81,8 @@ public class ContactServiceImpl implements ContactService {
         for (GCivicContact gcontact : officialContacts){
             Contact contact = beanMapper.map(gcontact,Contact.class);
             contact.setType(type.getDisplayValue());
-            contacts.add(contact);
+            //need to get the unified versino of this contact
+            contacts.add(contactRepository.getCorrespondingContact(contact));
         }
 
         return contacts;
@@ -93,12 +98,22 @@ public class ContactServiceImpl implements ContactService {
                     webTarget.queryParam("levels", "country")
                             .queryParam("roles", TypeMapping.get(type))
                             .queryParam("recursive", true)
-                            .queryParam("key", SpeakUnitedApp.GOOGLE_API_KEY);
+                            .queryParam("key", apiKeyConfig.getGoogleApiKey());
 
             return queryApi(webTarget, type);
         }catch(UnsupportedEncodingException e){
             LOG.error("Unsupported encoding: ",e);
         }
         return null;
+    }
+
+    @Override
+    public Contact getByBioguideId(String bioguideId) {
+        Contact toFind = new Contact();
+        IdInfo idInfo = new IdInfo();
+        idInfo.setBioguide(bioguideId);
+        toFind.setIdInfo(idInfo);
+
+        return contactRepository.getCorrespondingContact(toFind);
     }
 }

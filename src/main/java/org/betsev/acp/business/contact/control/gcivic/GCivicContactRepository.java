@@ -10,6 +10,7 @@ import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
  * Created by sevburmaka on 1/7/17.
  */
 @Service
+@Qualifier("gcivic")
 public class GCivicContactRepository {
     private static final Logger LOG = LoggerFactory.getLogger(USCLContactRepository.class);
 

@@ -3,6 +3,7 @@ package org.betsev.acp.business.contact.boundary;
 import org.betsev.acp.business.contact.entity.Contact;
 import org.betsev.acp.business.contact.entity.ContactType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by sevburmaka on 11/30/16.
@@ -20,30 +20,20 @@ import java.util.stream.Collectors;
 public class ContactRES {
 
     @Autowired
+    @Qualifier("unified")
     ContactService contactService;
-
-    @Autowired
-    ContactUnifierGateway contactUnifierGateway;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Contact> get(@RequestParam(required = false) String address,@RequestParam(required = false) String type) throws Exception {
-        List<Contact> rawContacts;
+        List<Contact> contacts;
 
         if (StringUtils.isEmpty(address))
-            rawContacts = contactService.getAllContacts();
+            contacts = contactService.getAllContacts();
         else {
             ContactType contactType = ContactType.getByValue(type);
-            rawContacts = contactService.findByAddressAndType(address, contactType);
+            contacts = contactService.findByAddressAndType(address, contactType);
         }
-        return unifyContacts(rawContacts);
+        return contacts;
     }
 
-    private List<Contact> unifyContacts(List<Contact> contacts){
-
-        List<Contact> unified = contacts.stream().map(
-                contactUnifierGateway::getContactInfo
-        ).collect(Collectors.toList());
-
-        return unified;
-    }
 }

@@ -4,3 +4,5 @@ server.port: 8080
 management.port: 8081
 
 issues-location: "/tmp/issues.json"
+google-api-key-location: "/tmp/google-api-key.yml"
+phaxio-api-key-location: "/tmp/phaxio-api-dev.yml"

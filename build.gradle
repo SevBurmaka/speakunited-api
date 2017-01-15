@@ -5,6 +5,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
     }
+
 }
 
 apply plugin: 'java'
@@ -20,6 +21,9 @@ jar {
 
 repositories {
     mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 sourceCompatibility = 1.8
@@ -47,6 +51,9 @@ dependencies {
     compile("org.springframework.boot:spring-boot-configuration-processor")
     compile("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.3")
     compile("info.debatty:java-string-similarity:0.13")
+
+    compile name: "phaxio-java-2.0.0"
+
 }
 
 compileJava.dependsOn(processResources)

@@ -1,1 +1,3 @@
-issues-location: "/Users/sevburmaka/dev/armchair-politics/build/resources/main/issues/issues.json"
+issues-location: "~/dev/armchair-politics/build/resources/main/issues/issues.json"
+google-api-key-location: "/tmp/google-api-key.yml"
+phaxio-api-key-location: "/tmp/phaxio-api-dev.yml"
