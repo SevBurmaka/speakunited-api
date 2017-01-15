@@ -22,7 +22,7 @@ jar {
 repositories {
     mavenCentral()
     flatDir {
-        dirs 'libs'
+        dirs 'extraLib'
     }
 }
 
