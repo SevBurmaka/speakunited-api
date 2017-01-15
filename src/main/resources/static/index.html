@@ -23,7 +23,7 @@
 
 <blockquote>
     <p>Retrieve a list of current calls-to-actions along with their speaking/writing templates</p>
-
+    <p>Example:</p>
 <pre><code>$ curl &quot;http://api.speakunited.us:8080/issues&quot;
 </code></pre>
 
@@ -39,7 +39,10 @@
         <li><code>header</code>: The header text for the fax document (think "title")</li>
         <li><code>body</code>: The body of the fax to send. This can be plain string or unicode encoded HTML</li>
     </ul>
-
+    <p>Example:</p>
+  <pre><code>
+      curl -H "Content-Type: application/json" -X POST -d '{"bioguideId":"C000141","header":"this is a test","body":"test"}' http://api.speakunited.us:8080/fax
+  </code></pre>
 </blockquote>
 
 <h2>Contact Form Submittal</h2>
