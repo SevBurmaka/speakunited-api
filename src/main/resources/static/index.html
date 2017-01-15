@@ -28,6 +28,20 @@
 </code></pre>
 
 </blockquote>
+
+<h3><code>POST /fax</code></h3>
+
+<blockquote>
+    <p>Send a fax to a congressman given their bioguideId (this can be attained using the contacts endpoint)</p>
+    <p>Json fields to post:</p>
+    <ul>
+        <li><code>bioguideId</code>: Bioguide Id of the contact</li>
+        <li><code>header</code>: The header text for the fax document (think "title")</li>
+        <li><code>body</code>: The body of the fax to send. This can be plain string or unicode encoded HTML</li>
+    </ul>
+
+</blockquote>
+
 <h2>Contact Form Submittal</h2>
 
 <p>This api provides a forwarding service to <a href="https://congressforms.eff.org">https://congressforms.eff.org</a></p>
