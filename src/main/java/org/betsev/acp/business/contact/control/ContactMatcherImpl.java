@@ -35,7 +35,7 @@ public class ContactMatcherImpl implements ContactMatcher{
                 it-> it.getFullName()
         ).collect(Collectors.toList());
 
-        int bestMatch = nameMatcher.getBestMatchIndex(toFind.getFullName(),names,0.9);
+        int bestMatch = nameMatcher.getBestMatchIndex(toFind.getFullName(),names,0.85);
         //for now just matching on full name
         if (bestMatch < 0){
             LOG.error("Could not find corresponding contact for {}",toFind.getFullName());

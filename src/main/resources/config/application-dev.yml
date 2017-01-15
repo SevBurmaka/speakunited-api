@@ -1,3 +1,4 @@
-issues-location: "~/dev/armchair-politics/build/resources/main/issues/issues.json"
-google-api-key-location: "/tmp/google-api-key.yml"
-phaxio-api-key-location: "/tmp/phaxio-api-dev.yml"
+issues-location: "/opt/speakunited-api/issues.json"
+google-api-key-location: "/opt/speakunited-api/google-api-key.yml"
+phaxio-api-key-location: "/opt/speakunited-api/phaxio-api-dev.yml"
+

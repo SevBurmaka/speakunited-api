@@ -3,6 +3,6 @@ server.port: 8080
 # Actuator
 management.port: 8081
 
-issues-location: "/tmp/issues.json"
-google-api-key-location: "/tmp/google-api-key.yml"
-phaxio-api-key-location: "/tmp/phaxio-api-dev.yml"
+issues-location: "/opt/speakunited-api/issues.json"
+google-api-key-location: "/opt/speakunited-api/google-api-key.yml"
+phaxio-api-key-location: "/opt/speakunited-api/phaxio-api-prod.yml"
