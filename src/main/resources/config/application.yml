@@ -5,4 +5,4 @@ management.port: 8081
 
 issues-location: "/opt/speakunited-api/issues.json"
 google-api-key-location: "/opt/speakunited-api/google-api-key.yml"
-phaxio-api-key-location: "/opt/speakunited-api/phaxio-api-prod.yml"
+phaxio-api-key-location: "/opt/speakunited-api/phaxio-api-dev.yml"
