@@ -1,0 +1,52 @@
+
+<div class="home-splash" ng-controller="repCtrl as rc">
+
+    <div class="rep-container double-white-border">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="text-center">Your Representatives:</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4" ng-repeat="rep in rc.reps">
+                <div class="rep-card">
+                    <h3>
+                        <span ng-show="rep.type === 'house' " >Rep. </span>
+                        <span ng-show="rep.type === 'senate' " >Sen. </span>
+                        {{rep.name}}
+                        <span ng-show="rep.party === 'Democratic' ">(D)</span>
+                        <span ng-show="rep.party === 'Republican' ">(R)</span>
+                    </h3>
+                    <div class="rep-image">
+                        <img ng-src="{{rep.photoUrl}}">
+                        <div class="missing-img" ng-if="!rep.photoUrl"><strong>No Image Found</strong></div>
+                    </div>
+                    <div class="buttons">
+                        <div class="highlight-buttons">
+                            <button class="btn" ng-click="callRep(rep)">Call</button>
+                            <button class="btn">Write a Letter</button>
+                        </div>
+                        <div class="secondary-buttons">
+                            <!--<button class="btn">Email</button>-->
+                            <button class="btn" ng-if="rep.dcFax || rep.districtFax">Fax</button>
+                            <button class="btn" ng-if="rep.socialMedia.facebook">
+                                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                                &nbsp;Post
+                            </button>
+                            <!--<br>-->
+                            <button class="btn" ng-if="rep.socialMedia.twitter">
+                                <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                                @ {{rep.name}}
+                            </button>
+                            <button class="btn" ng-if="rep.website">
+                                <a ng-href="{{rep.website}}" target="_blank">
+                                    Visit Website
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
