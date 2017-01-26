@@ -23,7 +23,6 @@ public class WebConfig {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
                 registry.addViewController("/api").setViewName("forward:/api.html");
-                registry.addViewController("/").setViewName("forward:/index.html");
             }
         };
     }
