@@ -16,7 +16,7 @@ import java.util.List;
  * Created by sevburmaka on 11/30/16.
  */
 @RestController
-@RequestMapping("/contacts")
+@RequestMapping("/api/contacts")
 public class ContactRES {
 
     @Autowired

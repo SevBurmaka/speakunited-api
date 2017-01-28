@@ -14,7 +14,7 @@ import java.util.List;
  * Created by sevburmaka on 12/11/16.
  */
 @RestController
-@RequestMapping("/issues")
+@RequestMapping("/api/issues")
 public class IssueRES {
 
     @Autowired

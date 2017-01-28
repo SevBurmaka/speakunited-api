@@ -12,7 +12,7 @@ import java.util.HashMap;
  * Created by sevburmaka on 1/1/17.
  */
 @RestController
-@RequestMapping("/forms")
+@RequestMapping("/api/forms")
 public class FormsRES {
     //for now we are forwarding to the external api. once we can get a local instance up and running we will use that instead
     public static final String EXTERNAL_FORM_API = "https://congressforms.eff.org";

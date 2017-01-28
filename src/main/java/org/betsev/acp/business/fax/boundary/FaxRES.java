@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by sevburmaka on 1/11/17.
  */
 @RestController
-@RequestMapping("/fax")
+@RequestMapping("/api/fax")
 public class FaxRES {
     @Autowired
     FaxService faxService;
