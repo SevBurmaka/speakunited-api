@@ -37,16 +37,12 @@
     <ul>
         <li><code>bioguideId</code>: Bioguide Id of the contact</li>
         <li><code>name:</code> The user's name</li>
-        <li><code>addressLine1:</code> The user's address line 1</li>
-        <li><code>(optional)addressLine2:</code> The user's address line 2</li>
-        <li><code>city:</code> The user's city</li>
-        <li><code>state:</code> The user's state</li>
-        <li><code>zip:</code> The user's zip code</li>
+        <li><code>address:</code> The user's address</li>
         <li><code>header</code>: The header text for the fax document (think "title")</li>
         <li><code>body</code>: The body of the fax to send. This can be plain string or unicode encoded HTML</li>
     </ul>
     <p>Example:</p>
-  <pre><code>$ curl -H "Content-Type: application/json" -X POST -d '{"bioguideId":"theBioguideId","header":"this is a test","body":"test","addressLine1":"123 fake street","name":"John Doe","city":"Gaithersburg","state":"MD","zip":"20878"}' http://speakunited.us/api/fax
+  <pre><code>$ curl -H "Content-Type: application/json" -X POST -d '{"bioguideId":"theBioguideId","header":"this is a test","body":"test","address":"123 fake street","name":"John Doe"}' http://speakunited.us/api/fax
   </code></pre>
 </blockquote>
 

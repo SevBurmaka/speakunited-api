@@ -118,13 +118,11 @@ public class PhaxioFaxService  implements FaxService{
         try {
             FileWriter writer = new FileWriter(tmp);
             writer.write("<P align=right >"+request.getName()+"</br>");
-            writer.write(request.getAddressLine1()+"</br>");
-            if (!StringUtils.isEmpty(request.getAddressLine2()))
-                writer.write(request.getAddressLine2()+"</br>");
-            writer.write(request.getCity()+", "+request.getState()+" "+ request.getZip());
+            writer.write(request.getAddress()+"</br>");
             writer.write("</P>");
             writer.write("<h2>"+request.getHeader()+"</h2>");
             writer.write("<body>"+request.getBody() +"</body>");
+            writer.write("<P align=left > Sincerely, </br>"+request.getName()+"</br>");
             writer.flush();
             writer.close();
         }catch (Exception e){
