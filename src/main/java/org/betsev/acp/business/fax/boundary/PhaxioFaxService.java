@@ -1,11 +1,11 @@
-package org.betsev.acp.business.fax.entity;
+package org.betsev.acp.business.fax.boundary;
 
 import com.phaxio.Fax;
 import com.phaxio.Phaxio;
 import com.phaxio.exception.PhaxioException;
 import org.betsev.acp.business.contact.boundary.ContactService;
 import org.betsev.acp.business.contact.entity.Contact;
-import org.betsev.acp.business.fax.boundary.FaxService;
+import org.betsev.acp.business.fax.entity.FaxRequest;
 import org.betsev.acp.config.ApiKeyConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +21,13 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.betsev.acp.support.LetterUtil.createHtmlFile;
+import static org.betsev.acp.support.LetterUtil.deleteOnAfterDelay;
 
 /**
  * Created by sevburmaka on 1/14/17.
@@ -105,34 +110,7 @@ public class PhaxioFaxService  implements FaxService{
         return phones;
     }
 
-    private void deleteOnAfterDelay(File f){
-        Runnable task2 = () -> {
-            try {
-                Thread.sleep(10000);
-            }catch(Exception e){}
-            f.delete();
-        };
-        new Thread(task2).start();
-    }
 
-    private File createHtmlFile(FaxRequest request){
-        UUID nameId = UUID.randomUUID();
-        File tmp = new File(nameId+".html");
-        try {
-            FileWriter writer = new FileWriter(tmp);
-            writer.write("<P align=right >"+request.getName()+"</br>");
-            writer.write(request.getAddress()+"</br>");
-            writer.write("</P>");
-            writer.write("<h2>"+request.getHeader()+"</h2>");
-            writer.write("<body>"+request.getBody() +"</body>");
-            writer.write("<P align=left > Sincerely, </br>"+request.getName()+"</br>");
-            writer.flush();
-            writer.close();
-        }catch (Exception e){
-            LOG.error("Error while attempting to create file for {}",request);
-        }
-        return tmp;
-    }
 
     private Long doSendFax(List<String> phoneNumbers, List<File> files, Map<String,Object> options) throws PhaxioException{
          return Fax.send(phoneNumbers, files, options);
