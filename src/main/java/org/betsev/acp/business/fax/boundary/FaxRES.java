@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Created by sevburmaka on 1/11/17.
  */
@@ -21,8 +23,15 @@ public class FaxRES {
     FaxService faxService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public String sendFax(@RequestBody FaxRequest faxRequest){
+    public HttpServletResponse sendFax(@RequestBody FaxRequest faxRequest,HttpServletResponse response){
         LOG.info("Processing fax request: {}",faxRequest);
-        return faxService.sendFax(faxRequest);
+        boolean success = faxService.sendFax(faxRequest);
+
+        if (success)
+            response.setStatus(HttpServletResponse.SC_OK);
+        else
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+
+        return response;
     }
 }

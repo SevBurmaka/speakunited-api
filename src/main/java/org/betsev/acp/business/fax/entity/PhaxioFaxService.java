@@ -39,18 +39,19 @@ public class PhaxioFaxService  implements FaxService{
     ContactService contactService;
 
     @Override
-    public String sendFax(FaxRequest request) {
+    public boolean sendFax(FaxRequest request) {
+
         Phaxio.apiKey = apiKeyConfig.getPhaxioApiKey();
         Phaxio.apiSecret = apiKeyConfig.getPhaxioApiSecret();
 
         if (request.getHeader().length() > 300 || request.getBody().length() > 3000)
-            return "Let's not get too crazy with the fax size here ;)";
+            LOG.error( "Let's not get too crazy with the fax size here ;)");
 
         Map<String,Object> options = new HashMap();
 
         List<String> phoneNumbers = getPhones(request.getBioguideId());
         if (CollectionUtils.isEmpty(phoneNumbers))
-            return "Could not look up fax number for bioguideId: "+request.getBioguideId(); //@todo give a more detailed response if sending faxes fails for any reason
+            LOG.error("Could not look up fax number for bioguideId: "+request.getBioguideId()); //@todo give a more detailed response if sending faxes fails for any reason
 
         List<File> files = new ArrayList();
         final File tmpFile = createHtmlFile(request);
@@ -67,7 +68,7 @@ public class PhaxioFaxService  implements FaxService{
 
         template.setRetryPolicy(policy);
         template.setBackOffPolicy(backOffPolicy);
-        String responseString;
+        boolean success;
         try {
             Long result = template.execute(new RetryCallback<Long,PhaxioException>() {
                 public Long doWithRetry(RetryContext context) throws PhaxioException{
@@ -77,16 +78,16 @@ public class PhaxioFaxService  implements FaxService{
                     return id;
                 }
             });
-            responseString = "Fax success!";
+            success = true;
         }catch (PhaxioException e){
             LOG.error("Error creating fax from request {}: phoneNumbers: {} : ",request,phoneNumbers,e);
-            responseString = "Fax failed :( : "+e.getMessage();
+            success = false;
         }
 
         //delete the file after a few seconds
         deleteOnAfterDelay(tmpFile);
 
-        return responseString;
+        return success;
     }
 
 
