@@ -53,7 +53,7 @@ public class PhaxioFaxService  implements FaxService{
             return "Could not look up fax number for bioguideId: "+request.getBioguideId(); //@todo give a more detailed response if sending faxes fails for any reason
 
         List<File> files = new ArrayList();
-        final File tmpFile = createHtmlFile(request.getHeader(),request.getBody());
+        final File tmpFile = createHtmlFile(request);
         files.add(tmpFile);
         RetryTemplate template = new RetryTemplate();
 
@@ -112,17 +112,23 @@ public class PhaxioFaxService  implements FaxService{
         new Thread(task2).start();
     }
 
-    private File createHtmlFile(String header,String body){
+    private File createHtmlFile(FaxRequest request){
         UUID nameId = UUID.randomUUID();
         File tmp = new File(nameId+".html");
         try {
             FileWriter writer = new FileWriter(tmp);
-            writer.write("<h2>"+header +"</h2>");
-            writer.write("<body>"+body +"</body>");
+            writer.write("<P align=right >"+request.getName()+"</br>");
+            writer.write(request.getAddressLine1()+"</br>");
+            if (!StringUtils.isEmpty(request.getAddressLine2()))
+                writer.write(request.getAddressLine2()+"</br>");
+            writer.write(request.getCity()+", "+request.getState()+" "+ request.getZip());
+            writer.write("</P>");
+            writer.write("<h2>"+request.getHeader()+"</h2>");
+            writer.write("<body>"+request.getBody() +"</body>");
             writer.flush();
             writer.close();
         }catch (Exception e){
-            LOG.error("Error while attempting to create file for {}",header);
+            LOG.error("Error while attempting to create file for {}",request);
         }
         return tmp;
     }

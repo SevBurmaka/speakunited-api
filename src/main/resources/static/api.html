@@ -3,7 +3,7 @@
 <p>Currently restricted to national house/senate, but there are plans to implement state-level as well.</p>
 <p>For bugs/questions/etc please contact <a href="mailto:speakunited.us@gmail.com">speakunited.us@gmail.com</a> </p>
 
-<h3><code>GET /contacts</code></h3>
+<h3><code>GET /api/contacts</code></h3>
 
 <blockquote>
     <p>Retrieve a list of contacts. Currently these are only house/senate legislators but may return other types of contacts in the future.
@@ -15,32 +15,38 @@
     </ul>
     <p>Example:</p>
 
-<pre><code>$ curl &quot;http://api.speakunited.us:8080/contacts?address=3333+Michelson+Drive+Irvine+CA&type=house&quot;
+<pre><code>$ curl &quot;http://speakunited.us/api/contacts?address=3333+Michelson+Drive+Irvine+CA&type=house&quot;
 </code></pre>
 </blockquote>
 
-<h3><code>GET /issues</code></h3>
+<h3><code>GET /api/issues</code></h3>
 
 <blockquote>
     <p>Retrieve a list of current calls-to-actions along with their speaking/writing templates</p>
     <p>Example:</p>
-<pre><code>$ curl &quot;http://api.speakunited.us:8080/issues&quot;
+<pre><code>$ curl &quot;http://speakunited.us/api/issues&quot;
 </code></pre>
 
 </blockquote>
 
-<h3><code>POST /fax</code></h3>
+<h3><code>POST /api/fax</code></h3>
 
 <blockquote>
     <p>Send a fax to a congressman given their bioguideId (this can be attained using the contacts endpoint)</p>
     <p>Json fields to post:</p>
     <ul>
         <li><code>bioguideId</code>: Bioguide Id of the contact</li>
+        <li><code>name:</code> The user's name</li>
+        <li><code>addressLine1:</code> The user's address line 1</li>
+        <li><code>(optional)addressLine2:</code> The user's address line 2</li>
+        <li><code>city:</code> The user's city</li>
+        <li><code>state:</code> The user's state</li>
+        <li><code>zip:</code> The user's zip code</li>
         <li><code>header</code>: The header text for the fax document (think "title")</li>
         <li><code>body</code>: The body of the fax to send. This can be plain string or unicode encoded HTML</li>
     </ul>
     <p>Example:</p>
-  <pre><code>$ curl -H "Content-Type: application/json" -X POST -d '{"bioguideId":"theBioguideId","header":"this is a test","body":"test"}' http://api.speakunited.us:8080/fax
+  <pre><code>$ curl -H "Content-Type: application/json" -X POST -d '{"bioguideId":"theBioguideId","header":"this is a test","body":"test","addressLine1":"123 fake street","name":"John Doe","city":"Gaithersburg","state":"MD","zip":"20878"}' http://speakunited.us/api/fax
   </code></pre>
 </blockquote>
 
