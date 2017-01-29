@@ -44,8 +44,10 @@ public class PhaxioFaxService  implements FaxService{
         Phaxio.apiKey = apiKeyConfig.getPhaxioApiKey();
         Phaxio.apiSecret = apiKeyConfig.getPhaxioApiSecret();
 
-        if (request.getHeader().length() > 300 || request.getBody().length() > 3000)
-            LOG.error( "Let's not get too crazy with the fax size here ;)");
+        if (request.getHeader().length() > 300 || request.getBody().length() > 3000) {
+            LOG.error("Let's not get too crazy with the fax size here ;)");
+            return false;
+        }
 
         Map<String,Object> options = new HashMap();
 
