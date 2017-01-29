@@ -1,1 +1,2 @@
 phaxio-api-key-location: "/opt/speakunited-api/phaxio-api-prod.yml"
+lob-api-key-location: "/op/speakunited-api/lob-api-prod.yml"
