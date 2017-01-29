@@ -22,12 +22,12 @@ public class FaxRES {
     FaxService faxService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Boolean> sendFax(@RequestBody FaxRequest faxRequest){
+    public ResponseEntity<String> sendFax(@RequestBody FaxRequest faxRequest){
         LOG.info("Processing fax request: {}",faxRequest);
         boolean success = faxService.sendFax(faxRequest);
 
         if (success)
-            return ResponseEntity.ok(success);
+            return ResponseEntity.ok("Success");
         else
             return ResponseEntity.badRequest().body(null);
     }
