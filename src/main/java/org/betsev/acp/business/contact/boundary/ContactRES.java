@@ -2,6 +2,8 @@ package org.betsev.acp.business.contact.boundary;
 
 import org.betsev.acp.business.contact.entity.Contact;
 import org.betsev.acp.business.contact.entity.ContactType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.util.StringUtils;
@@ -18,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/contacts")
 public class ContactRES {
+    private static final Logger LOG = LoggerFactory.getLogger(ContactRES.class);
 
     @Autowired
     @Qualifier("unified")
@@ -25,6 +28,7 @@ public class ContactRES {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Contact> get(@RequestParam(required = false) String address,@RequestParam(required = false) String type) throws Exception {
+        LOG.info("Processing contact get request: address: {}, type: {}",address,type);
         List<Contact> contacts;
 
         if (StringUtils.isEmpty(address))

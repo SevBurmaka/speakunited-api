@@ -1,6 +1,8 @@
 package org.betsev.acp.business.issue.boundary;
 
 import org.betsev.acp.business.issue.entity.Issue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +18,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/issues")
 public class IssueRES {
+    private static final Logger LOG = LoggerFactory.getLogger(IssueRES.class);
 
     @Autowired
     IssueService issueService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Issue> get(@RequestParam(required = false) String name, @RequestParam(required = false) String repName) throws Exception {
+        LOG.info("Processing issue request: name: {}, repName: {}",name,repName);
         List<Issue> issues = issueService.getTopIssues();
         if (!StringUtils.isEmpty(name))
             issues = issueService.replaceIssueText(issues,"name",name);
