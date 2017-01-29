@@ -89,8 +89,8 @@
             <a>lastTerm.phone</a>
             <b>dcPhone</b>
         </field>
-        <field >
-            <a>lastTerm.fax</a>
+        <field custom-converter="org.betsev.acp.support.converters.contact.uscl.USCLFaxConverter">
+            <a>terms</a>
             <b>dcFax</b>
         </field>
     </mapping>
