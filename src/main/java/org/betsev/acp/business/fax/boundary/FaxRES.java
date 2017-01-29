@@ -4,12 +4,11 @@ import org.betsev.acp.business.fax.entity.FaxRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by sevburmaka on 1/11/17.
@@ -23,15 +22,13 @@ public class FaxRES {
     FaxService faxService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public HttpServletResponse sendFax(@RequestBody FaxRequest faxRequest,HttpServletResponse response){
+    public ResponseEntity<Boolean> sendFax(@RequestBody FaxRequest faxRequest){
         LOG.info("Processing fax request: {}",faxRequest);
         boolean success = faxService.sendFax(faxRequest);
 
         if (success)
-            response.setStatus(HttpServletResponse.SC_OK);
+            return ResponseEntity.ok(success);
         else
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-
-        return response;
+            return ResponseEntity.badRequest().body(null);
     }
 }
