@@ -2,7 +2,9 @@ package org.betsev.acp.business.letter.boundary;
 
 import com.lob.client.AsyncLobClient;
 import com.lob.client.LobClient;
+import com.lob.id.AddressId;
 import com.lob.protocol.request.AddressRequest;
+import com.lob.protocol.response.AddressResponse;
 import com.lob.protocol.response.LetterResponse;
 import org.betsev.acp.business.contact.boundary.ContactService;
 import org.betsev.acp.business.contact.entity.Address;
@@ -10,17 +12,21 @@ import org.betsev.acp.business.contact.entity.Contact;
 import org.betsev.acp.business.letter.entity.LetterRequest;
 import org.betsev.acp.business.letter.entity.PaidLetterRequest;
 import org.betsev.acp.config.ApiKeyConfig;
+import org.betsev.acp.support.AddressParser;
 import org.betsev.acp.support.LetterUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by sevburmaka on 1/29/17.
  */
+@Service
 public class LobLetterService implements LetterService {
     private static final Logger LOG = LoggerFactory.getLogger(LobLetterService.class);
     @Autowired
@@ -29,6 +35,9 @@ public class LobLetterService implements LetterService {
     @Autowired
     @Qualifier("unified")
     ContactService contactService;
+
+    @Autowired
+    AddressParser addressParser;
 
     @Override
     public boolean sendLetter(LetterRequest letter) {
@@ -46,17 +55,19 @@ public class LobLetterService implements LetterService {
             LOG.error("No addresses found for bioguide: {}",letter.getBioguideId());
             return false;
         }
-
-        final LobClient client = AsyncLobClient.createDefault("test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc");
-
         File letterFile = LetterUtil.createHtmlFile(letter);
-        final com.lob.protocol.request.LetterRequest letterRequest = com.lob.protocol.request.LetterRequest.builder()
-                .to(createAddressRequest(contact.getName(),address))
-                .file(letterFile)
-                .color(true)
-                .build();
 
         try {
+            final LobClient client = AsyncLobClient.createDefault("test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc");
+
+            final com.lob.protocol.request.LetterRequest letterRequest = com.lob.protocol.request.LetterRequest.builder()
+                    .to(createAddressRequest(contact.getName(),address,client))
+                    .from(createAddressRequest(paidLetterRequest.getName(),paidLetterRequest.getAddress(),client))
+                    .file(letterFile)
+                    .color(true)
+                    .build();
+
+
             final LetterResponse letterResponse = client.createLetter(letterRequest).get();
             LOG.info("Generated letter: {}", letterResponse);
         }
@@ -70,9 +81,9 @@ public class LobLetterService implements LetterService {
         return true;
     }
 
-    private AddressRequest createAddressRequest(String repName, Address address){
-        return AddressRequest.builder()
-                .name(repName)
+    private AddressId createAddressRequest(String name, Address address, LobClient client) throws InterruptedException,ExecutionException{
+        final AddressRequest request =  AddressRequest.builder()
+                .name(name)
                 .line1(address.getLine1())
                 .line2(address.getLine2())
                 .city(address.getCity())
@@ -80,6 +91,14 @@ public class LobLetterService implements LetterService {
                 .zip(address.getZip())
                 .country("US")
                 .build();
+
+        final AddressResponse exampleAddressResponse = client.createAddress(request).get();
+
+        return exampleAddressResponse.getId();
+    }
+
+    private AddressId createAddressRequest(String name, String address, LobClient client) throws InterruptedException,ExecutionException{
+        return createAddressRequest(name,addressParser.parseAddress(address),client);
     }
 
     public boolean doPayment(PaidLetterRequest request){
