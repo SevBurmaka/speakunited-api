@@ -18,4 +18,18 @@ public class Address {
     String city;
     String state;
     String zip;
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "line1='" + line1 + '\'' +
+                ", line2='" + line2 + '\'' +
+                ", line3='" + line3 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                '}';
+    }
+
+
 }
