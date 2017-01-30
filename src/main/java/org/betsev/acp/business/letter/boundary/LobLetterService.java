@@ -20,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -55,7 +54,7 @@ public class LobLetterService implements LetterService {
             LOG.error("No addresses found for bioguide: {}",letter.getBioguideId());
             return false;
         }
-        File letterFile = LetterUtil.createHtmlFile(letter);
+        String letterHtml = LetterUtil.createHtmlString(letter);
 
         try {
             final LobClient client = AsyncLobClient.createDefault("test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc");
@@ -63,8 +62,8 @@ public class LobLetterService implements LetterService {
             final com.lob.protocol.request.LetterRequest letterRequest = com.lob.protocol.request.LetterRequest.builder()
                     .to(createAddressRequest(contact.getName(),address,client))
                     .from(createAddressRequest(paidLetterRequest.getName(),paidLetterRequest.getAddress(),client))
-                    .file(letterFile)
-                    .color(true)
+                    .file(letterHtml)
+                    .color(false)
                     .build();
 
 
@@ -74,9 +73,6 @@ public class LobLetterService implements LetterService {
         catch (final Exception e) {
             LOG.error("Failed Letter {}", letter,e);
             return false;
-        }
-        finally{
-            LetterUtil.deleteOnAfterDelay(letterFile);
         }
         return true;
     }

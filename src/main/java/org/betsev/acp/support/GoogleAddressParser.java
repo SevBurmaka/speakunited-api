@@ -48,7 +48,7 @@ public class GoogleAddressParser implements AddressParser {
                         streetNumber = curComponent.longName;
                 else if (type.equals(AddressComponentType.ROUTE))
                         street = curComponent.shortName;
-                else if (type.equals(AddressComponentType.LOCALITY))
+                else if (type.equals(AddressComponentType.LOCALITY)) //@TODO add in address line 2
                     parsedAddress.setCity(curComponent.longName);
                 else if (type.equals(AddressComponentType.ADMINISTRATIVE_AREA_LEVEL_1))
                     parsedAddress.setState(curComponent.shortName);
