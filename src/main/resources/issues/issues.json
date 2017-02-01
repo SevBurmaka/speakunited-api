@@ -1,7 +1,7 @@
 [
   {
     "priority": 1,
-    "title": "Speak Out Against the Muslim Ban",
+    "title": "Speak Out Against The Muslim Ban",
     "description": "On Friday, January 27, Donald Trump held a pen in his small hand and signed an executive order suspending entry of all refugees to the United States for 120 days and indefinitely for refugees from Syria. For 90 days, it also bans entry into the United States by travelers from seven predominantly Muslim countries: Iraq, Syria, Iran, Sudan, Libya, Somalia and Yemen. If there was any doubt that this is a ban on Muslims, Trump publicly admitted that he would give Christians from those countries a de facto priority, which is religious discrimination on its face. This has already been ruled unconstitutional and unlawful by the courts. Speak out now!",
     "scripts":[
       {
@@ -20,8 +20,8 @@
       },
       {
         "type": "mail",
-        "title": "Regarding The Presidential Accountability Act",
-        "text": "Friday, Trump signed an executive order barring citizens of seven predominantly Muslim countries from entering the U.S. As a result, green card holders and holders of valid visas were detained at airports across the country. As a constituent, I want [repName] to do everything in their power to fight for the rights of immigrants, who make our nation great. I expect them to join the public outcry and make it clear to the Trump Administration that they will not participate in legislating or approving funding for an extremist and xenophobic agenda. How is [repName] going to stand up to this unconstitutional order and other attempts to violate immigrants' rights?"
+        "title": "Please Speak Out Against The Muslim Ban",
+        "text": "As a constituent, I want [repName] to do everything in their power to fight for the rights of immigrants, who make our nation great. I expect them to join the public outcry and make it clear to the Trump Administration that they will not participate in legislating or approving funding for an extremist and xenophobic agenda. How is [repName] going to stand up to this unconstitutional order and other attempts to violate immigrants' rights?"
       }
     ],
     "types": ["house","senate"],
