@@ -11,12 +11,12 @@
       {
         "type": "facebook",
         "text": "I'm [name], asking [repName] to speak out against the Muslim Ban",
-        "hashTags":"#noMuslimBan,#loveTrumpsHate"
+        "hashTags":"noMuslimBan,loveTrumpsHate"
       },
       {
         "type": "twitter",
         "text": "Please speak out and do everything in your power to stop the Muslim Ban",
-        "hashTags":"#noMuslimBan,#loveTrumpsHate"
+        "hashTags":"noMuslimBan,loveTrumpsHate"
       },
       {
         "type": "mail",
