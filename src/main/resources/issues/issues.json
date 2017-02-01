@@ -1,31 +1,31 @@
 [
   {
     "priority": 1,
-    "title": "Support The Presidential Accountability Act",
-    "description": "Call your House rep & party leadership to register your support for Katherine Clark's bill",
+    "title": "Speak Out Against the Muslim Ban",
+    "description": "Call your representative and senators to encourage them to speak out against the Muslim Ban",
     "scripts":[
       {
         "type": "phone",
-        "text": "I'm [name], a constituent calling about H.R. 6340, Rep. Katherine Clark's Presidential Accountability Act. Please ask [repName] to support this resolution. The American people deserve a president who does not have any actual or perceived conflicts of interest in his financial dealings."
+        "text": "Friday, Trump signed an executive order barring citizens of seven predominantly Muslim countries from entering the U.S. As a result, green card holders and holders of valid visas were detained at airports across the country. As a constituent, I want [repName] to do everything in <his/her> power to fight for the rights of immigrants, who make our nation great. I expect <him/her> to join the public outcry and make it clear to the Trump Administration that <he/she> will not participate in legislating or approving funding for an extremist and xenophobic agenda. How is [repName] going to stand up to this unconstitutional order and other attempts to violate immigrants' rights?"
       },
       {
         "type": "facebook",
-        "text": "I'm [name], a constituent contacting you about H.R. 6340, Rep. Katherine Clark's Presidential Accountability Act. Please support this resolution. The American people deserve a president who does not have any actual or perceived conflicts of interest in his financial dealings. ",
-        "hashTags":"#accountabilityact,#HR6340"
+        "text": "I'm [name], asking [repName] to speak out against the Muslim Ban",
+        "hashTags":"#noMuslimBan,#loveTrumpsHate"
       },
       {
         "type": "twitter",
-        "text": "Support H.R. 6340! America deserves a president who does not have any conflicts of interest.",
-        "hashTags":"#accountabilityact,#HR6340"
+        "text": "Please speak out and do everything in your power to stop the Muslim Ban",
+        "hashTags":"#noMuslimBan,#loveTrumpsHate"
       },
       {
         "type": "mail",
         "title": "Regarding The Presidential Accountability Act",
-        "text": "I'm [name], a constituent contacting you about H.R. 6340, Rep. Katherine Clark's Presidential Accountability Act. Please support this resolution. The American people deserve a president who does not have any actual or perceived conflicts of interest in his financial dealings."
+        "text": "Friday, Trump signed an executive order barring citizens of seven predominantly Muslim countries from entering the U.S. As a result, green card holders and holders of valid visas were detained at airports across the country. As a constituent, I want [repName] to do everything in their power to fight for the rights of immigrants, who make our nation great. I expect them to join the public outcry and make it clear to the Trump Administration that they will not participate in legislating or approving funding for an extremist and xenophobic agenda. How is [repName] going to stand up to this unconstitutional order and other attempts to violate immigrants' rights?"
       }
     ],
     "types": ["house","senate"],
     "specific_contact": "", //if this needs a specific contact (such as "House Oversight Committee") it would be here
-    "notes": "Learn more about the resolution here: https://www.congress.gov/bill/114th-congress/house-bill/6340/all-actions?overview=closed#tabs http://katherineclark.house.gov/index.cfm/2016/11/clark-introduces-bill-to-ensure-president-elect-addresses-conflicts-of-interest. If you have time, you could call Congresswoman Clark's office and thank her: \"I'm calling to thank Congresswoman Clark for introducing H.R. 6340! I appreciate her willingness to keep the president accountable to the American people.\""
+    "notes": ""
   }
 ]
