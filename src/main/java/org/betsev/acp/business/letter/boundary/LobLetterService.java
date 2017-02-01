@@ -13,13 +13,16 @@ import org.betsev.acp.business.letter.entity.LetterRequest;
 import org.betsev.acp.business.letter.entity.PaidLetterRequest;
 import org.betsev.acp.config.ApiKeyConfig;
 import org.betsev.acp.support.AddressParser;
-import org.betsev.acp.support.LetterUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -54,15 +57,21 @@ public class LobLetterService implements LetterService {
             LOG.error("No addresses found for bioguide: {}",letter.getBioguideId());
             return false;
         }
-        String letterHtml = LetterUtil.createHtmlString(letter);
+
+
 
         try {
+            String letterHtml = new Scanner(new ClassPathResource("letter-template.html").getInputStream()).useDelimiter("\\A").next();
+
+            Map<String,String> data = new HashMap<>();
+            data.put("body_text",paidLetterRequest.getBody());
+
             final LobClient client = AsyncLobClient.createDefault("test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc");
 
             final com.lob.protocol.request.LetterRequest letterRequest = com.lob.protocol.request.LetterRequest.builder()
                     .to(createAddressRequest(contact.getName(),address,client))
                     .from(createAddressRequest(paidLetterRequest.getName(),paidLetterRequest.getAddress(),client))
-                    .file(letterHtml)
+                    .file(letterHtml).data(data)
                     .color(false)
                     .build();
 
@@ -70,7 +79,7 @@ public class LobLetterService implements LetterService {
             final LetterResponse letterResponse = client.createLetter(letterRequest).get();
             LOG.info("Generated letter: {}", letterResponse);
         }
-        catch (final Exception e) {
+        catch ( Exception e) {
             LOG.error("Failed Letter {}", letter,e);
             return false;
         }

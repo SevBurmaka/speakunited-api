@@ -21,6 +21,7 @@ public class FaxRES {
     @Autowired
     FaxService faxService;
 
+    //@todo send more meaningful responses
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> sendFax(@RequestBody FaxRequest faxRequest){
         LOG.info("Processing fax request: {}",faxRequest);

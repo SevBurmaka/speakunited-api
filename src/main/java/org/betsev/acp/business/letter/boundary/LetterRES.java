@@ -21,6 +21,7 @@ public class LetterRES {
     @Autowired
     LetterService letterService;
 
+    //todo send more meaningful responses
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> sendFax(@RequestBody PaidLetterRequest letterRequest){
         LOG.info("Processing letter request: {}",letterRequest);
