@@ -1,27 +1,27 @@
 [
   {
     "priority": 1,
-    "title": "Speak Out Against The Muslim Ban",
-    "description": "On Friday, January 27, Donald Trump held a pen in his small hand and signed an executive order suspending entry of all refugees to the United States for 120 days and indefinitely for refugees from Syria. For 90 days, it also bans entry into the United States by travelers from seven predominantly Muslim countries: Iraq, Syria, Iran, Sudan, Libya, Somalia and Yemen. If there was any doubt that this is a ban on Muslims, Trump publicly admitted that he would give Christians from those countries a de facto priority, which is religious discrimination on its face. This has already been ruled unconstitutional and unlawful by the courts. Speak out now!",
+    "title": "Investigate Flynn's Communication With Russia",
+    "description": "There is strong evidence that Michael Flynn (National Security Advisor to Trump) spoke with the Russian government about US sanctions, which is illegal under the Logan Act. Flynn's security clearance should be revoked until an investigation takes place, and he should be removed from his position as National Security Advisor.",
     "scripts":[
       {
         "type": "phone",
-        "text": "Friday, Trump signed an executive order barring citizens of seven predominantly Muslim countries from entering the U.S. As a result, green card holders and holders of valid visas were detained at airports across the country. As a constituent, I want [repName] to do everything in <his/her> power to fight for the rights of immigrants, who make our nation great. I expect <him/her> to join the public outcry and make it clear to the Trump Administration that <he/she> will not participate in legislating or approving funding for an extremist and xenophobic agenda. How is [repName] going to stand up to this unconstitutional order and other attempts to violate immigrants' rights?"
+        "text": "Hi, I'm [name], a constituent. I'm calling to urge [repName] to demand an independent investigation into Michael Flynn's communication with Russia in the months prior to Donald Trump's inauguration. There is strong evidence that Flynn spoke with the Russian government about US sanctions, which is illegal under the Logan Act. Flynn's security clearance should be revoked until an investigation takes place, and he should be removed from his position as National Security Advisor. I expect [repName] to condemn Flynn's actions in the strongest possible terms and push for a thorough investigation into the extent of his communication with Russia. Thank you."
       },
       {
         "type": "facebook",
-        "text": "I'm [name], asking [repName] to speak out against the Muslim Ban",
-        "hashTags":"noMuslimBan,loveTrumpsHate"
+        "text": "We demand Flynn be investigated for his calls to Russia!",
+        "hashTags":"fireFlynn"
       },
       {
         "type": "twitter",
-        "text": "Please speak out and do everything in your power to stop the Muslim Ban",
-        "hashTags":"noMuslimBan,loveTrumpsHate"
+        "text": "We demand you investigate Flynn's calls to Russia!",
+        "hashTags":"fireFlynn"
       },
       {
         "type": "mail",
-        "header": "Please Speak Out Against The Muslim Ban",
-        "text": "As a constituent, I want [repName] to do everything in their power to fight for the rights of immigrants, who make our nation great. I expect them to join the public outcry and make it clear to the Trump Administration that they will not participate in legislating or approving funding for an extremist and xenophobic agenda. How is [repName] going to stand up to this unconstitutional order and other attempts to violate immigrants' rights?"
+        "header": "Please Investigate Flynn",
+        "text": "I'm writing to demand an independent investigation into Michael Flynn's communication with Russia in the months prior to Donald Trump's inauguration. There is strong evidence that Flynn spoke with the Russian government about US sanctions, which is illegal under the Logan Act. Flynn's security clearance should be revoked until an investigation takes place, and he should be removed from his position as National Security Advisor. I expect [repName] to condemn Flynn's actions in the strongest possible terms and push for a thorough investigation into the extent of his communication with Russia."
       }
     ],
     "types": ["house","senate"],
